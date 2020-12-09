@@ -1,10 +1,8 @@
 from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS
-from route import test, get_anime, return_all
+from route import test
 
-data = [{'anime':["onepiece", "one piece"],'link':"alsdkfj","type":"action"},
-        {'anime':["toriko"],'link':{'line':"alsdkfj"},"type":"action"},
-        ]
+data = [###รอข้อมูลจาก database
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -24,6 +22,17 @@ def return_all():
 def get_name(name):
     return jsonify(get_anime())
 
+@app.route('/name_anime')#name
+def name_anime(names):
+    return jsonify(name_anime())
+
+@app.route('/type_anime/<type>')#type
+def type_anime(types):
+    return jsonify(type_anime())
+
+@app.route('/link_anime/<type>')#link
+def link_anime(link):
+    return jsonify(link_anime())
 
 if __name__ == '__main__':
     app.run(debug=True)
